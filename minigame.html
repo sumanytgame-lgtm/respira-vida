@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Respira Vida — Quiz Anti-Fumo</title>
+
+<style>
+/* ---- ESTILO DO QUIZ ---- */
+#quiz-box {
+    background: var(--glass);         /* fundo transparente bonito */
+    backdrop-filter: blur(12px);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    width: 350px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* deixa todo o texto do quiz PRETO */
+#quiz-box, 
+#quiz-box * {
+    color: #ffffff !important;
+}
+
+/* botões */
+#quiz-box button {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s;
+    font-weight: bold;
+}
+
+#quiz-box .option {
+    background: var(--accent);
+    color: #022624 !important;
+}
+
+#quiz-box .option:hover {
+    background: #13b7a9;
+}
+
+#quiz-box button:not(.option) {
+    background: #fff;
+    color: #000 !important;
+}
+
+#quiz-box button:not(.option):hover {
+    background: #e8e8e8;
+}
+
+
+
+/* ---- SEU CSS ORIGINAL CONTINUA AQUI ---- */
+
+:root{
+  --bg-1:#0f1720;
+  --bg-2:#06383a;
+  --accent:#14c8b6;
+  --muted:#9fb6bb;
+  --card-1:#fff6f0;
+  --card-2:#f6f0ff;
+  --card-3:#eef7ff;
+  --glass: rgba(255,255,255,0.04);
+  --shadow: 0 12px 30px rgba(2,12,18,0.5);
+  --radius:14px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter, Arial;
+  background:linear-gradient(180deg,var(--bg-1),var(--bg-2));
+  color:#fff;
+}
+
+/* hero */
+header.hero{
+  height:560px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#fff;
+  position:relative;
+}
+
+.hero-inner{max-width:920px;padding:40px}
+.icon-breath{
+  width:54px;height:54px;border-radius:12px;
+  display:inline-grid;place-items:center;
+  background:linear-gradient(90deg, rgba(20,200,182,0.12), transparent);
+  color:var(--accent);
+  font-size:28px;
+  margin-bottom:18px;
+}
+
+.title-row{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:14px;
+}
+
+.title-row h1{
+  font-size:64px;
+  margin:0;
+  font-weight:800;
+}
+
+.login-link{
+  padding:8px 14px;
+  border-radius:999px;
+  color:var(--accent);
+  background:rgba(20,200,182,0.08);
+  border:1px solid rgba(20,200,182,0.18);
+  text-decoration:none;
+  font-weight:700;
+}
+
+.subtitle{color:#ddd;margin-top:10px}
+.lead{color:#ccc;max-width:500px;margin:10px auto 20px}
+.btn-primary{
+  background:var(--accent);
+  padding:12px 22px;
+  border-radius:999px;
+  color:#022624;
+  text-decoration:none;
+  font-weight:700;
+}
+
+footer{
+  text-align:center;
+  padding:40px 10px;
+  color:#9fb6bb;
+}
+.quiz-container {
+    display: flex;
+    justify-content: center;
+    align-items: start; /* fica no topo */
+    padding-top: 40px; /* abaixa um pouquinho */
+    height: auto;
+}
+
+</style>
+</head>
+
+<body>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="icon-breath">🫁</div>
+
+      <div class="title-row">
+        <h1>Respira Vida</h1>
+        <a class="login-link" href="login.php">Login</a>
+        <a class="login-link" href="sobrenos.html">Sobre Nós</a>
+      </div>
+
+      <div class="subtitle">Um futuro sem fumaça</div>
+      <p class="lead">Quiz educativo para aprender mais sobre os riscos do cigarro e vape.</p>
+      <a class="btn-primary" href="#comparar">Descubra a Verdade</a>
+    </div>
+    
+  </header>
+  
+
+
+  <!-- ================= QUIZ ================== -->
+
+  <section class="quiz-container">
+    <div id="quiz-box">
+        <h2 id="question">Carregando...</h2>
+        <div id="options"></div>
+    </div>
+  </section>
+
+
+  <footer>
+    <p>&copy; 2025 Respira Vida — Informar, prevenir e apoiar.</p>
+  </footer>
+
+<script>
+let index = 0;
+let score = 0;
+
+const quiz = [
+    {
+        q: "Após 20 minutos sem fumar, o que melhora no corpo?",
+        options: ["Respiração", "Circulação", "Visão", "Digestão"],
+        answer: 1
+    },
+    {
+        q: "O vape contém...",
+        options: ["Somente água", "Vitaminas", "Substâncias tóxicas", "Oxigênio purificado"],
+        answer: 2
+    },
+    {
+        q: "Qual doença é comum em fumantes?",
+        options: ["DPOC", "Catapora", "Alergia a poeira", "Gripe rara"],
+        answer: 0
+    }
+];
+
+function loadQuestion() {
+    let q = quiz[index];
+    document.getElementById("question").innerText = q.q;
+
+    let opts = "";
+    q.options.forEach((opt, i) => {
+        opts += `<button class="option" onclick="checkAnswer(${i})">${opt}</button>`;
+    });
+    document.getElementById("options").innerHTML = opts;
+}
+
+function checkAnswer(i) {
+    if (i === quiz[index].answer) score++;
+
+    index++;
+    if (index < quiz.length) {
+        loadQuestion();
+    } else {
+        finishQuiz();
+    }
+}
+
+function finishQuiz() {
+    document.getElementById("quiz-box").innerHTML = `
+        <h2>Você completou o quiz!</h2>
+        <p><strong>Pontos: ${score}/${quiz.length}</strong></p>
+        <p>${score === quiz.length ? "Excelente! 👏" : "Continue praticando! 💪"}</p>
+    `;
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>

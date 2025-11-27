@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Respira Vida — Contra Vape</title>
+  <style>
+    :root{
+      --bg-1:#0f1720;
+      --bg-2:#06383a;
+      --accent:#14c8b6;
+      --muted:#9fb6bb;
+      --card-1:#fff6f0;
+      --card-2:#f6f0ff;
+      --card-3:#eef7ff;
+      --glass: rgba(255,255,255,0.04);
+      --shadow: 0 12px 30px rgba(2,12,18,0.5);
+      --radius:14px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;color:#071422;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));-webkit-font-smoothing:antialiased}
+    header.hero{
+      height:560px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-inner{max-width:920px;padding:40px}
+    .icon-breath{
+      width:54px;height:54px;border-radius:12px;
+      display:inline-grid;place-items:center;
+      background:linear-gradient(90deg, rgba(20,200,182,0.12), transparent);
+      color:var(--accent); font-size:28px;margin-bottom:18px;
+    }
+
+    /* new styles for title row + login link */
+    .title-row{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+    .title-row h1{font-size:64px;margin:6px 0 8px;line-height:1; font-weight:800; color:#fff}
+    .login-link{
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:999px;
+      color:var(--accent);
+      background:rgba(20,200,182,0.08);
+      border:1px solid rgba(20,200,182,0.18);
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+      transition:transform .12s ease, box-shadow .12s ease;
+    }
+    .login-link:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(20,200,182,0.08)}
+
+    h2.subtitle{color:rgba(255,255,255,0.85);font-weight:500;margin:0 0 18px;font-size:18px}
+    p.lead{color:rgba(255,255,255,0.8);margin:12px 0 22px;font-size:16px}
+    .btn-primary{
+      background:var(--accent); color:#022624; padding:12px 22px;border-radius:999px;border:none;font-weight:700;text-decoration:none;display:inline-block;box-shadow:0 8px 20px rgba(20,200,182,0.12)
+    }
+    /* floating dots */
+    .dots{position:absolute;left:6%;bottom:18%;opacity:0.12}
+    .dots span{display:block;width:6px;height:6px;background:#fff;border-radius:50%;margin:10px 16px}
+    main{max-width:1180px;margin:-80px auto 80px;padding:0 20px}
+    .compare{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .card{
+      background:#fff;padding:22px;border-radius:14px;box-shadow:var(--shadow);border:1px solid rgba(2,12,18,0.03);
+      min-height:260px;display:flex;flex-direction:column;gap:14px;
+    }
+    .card .badge{width:54px;height:54px;border-radius:12px;display:grid;place-items:center;font-size:20px;color:#fff}
+    .c1{background:linear-gradient(180deg,#ffb57a,#ffdcbc); color:#d35400}
+    .c2{background:linear-gradient(180deg,#e7d8ff,#f6ecff); color:#8a3ffc}
+    .c3{background:linear-gradient(180deg,#dff7ff,#eaf9ff); color:#0b9bd3}
+    .card h3{margin:0;font-size:20px;color:#14212a;font-weight:800}
+    .stat{background:#fff;border-radius:10px;padding:14px;border:1px solid rgba(2,12,18,0.03)}
+    .stat strong{display:block;font-size:20px;color:#0b1f26}
+    .stat small{color:#6b7f83}
+    /* chart mock */
+    .chart {
+      background:linear-gradient(180deg,#fff,#fbfbfb);
+      border-radius:12px;padding:18px;border:1px solid rgba(2,12,18,0.04);
+      margin-top:22px;
+    }
+    .bars{display:flex;gap:20px;align-items:end;height:160px}
+    .bar{flex:1;border-radius:8px 8px 0 0;position:relative}
+    .bar span{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);font-weight:700;color:#0b1f26}
+    .bar.cig{height:46%;background:linear-gradient(180deg,#ff9a3c,#ff7a3c)}
+    .bar.vape{height:58%;background:linear-gradient(180deg,#b37aff,#7f4bff)}
+    .bar.narg{height:96%;background:linear-gradient(180deg,#ff5b5b,#e64545)}
+    .legend{display:flex;gap:18px;align-items:center;margin-top:12px;color:#6b7f83}
+    .legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+    footer{max-width:1180px;margin:30px auto 80px;padding:0 20px;color:var(--muted);text-align:center}
+    /* responsive */
+    @media (max-width:980px){
+      .title-row h1{font-size:44px}
+      .compare{grid-template-columns:1fr}
+      main{margin-top:20px}
+    }
+    /* cards de imagem */
+.card-img{
+  padding:0;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+
+.img-box{
+  width:100%;
+  height:180px;
+  background:#ffffff;
+  border-radius:14px 14px 0 0;
+  overflow:hidden;
+  border-bottom:1px solid rgba(2,12,18,0.1);
+}
+
+.img-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.img-title{
+  padding:16px;
+  font-size:18px;
+  color:#14212a;
+  font-weight:700;
+}
+.img-box{
+  width:100%;
+  height:575px; /* Aumentado */
+  background:#ffffff;
+  border-radius:14px 14px 0 0;
+  overflow:hidden;
+  border-bottom:1px solid rgba(2,12,18,0.1);
+}
+
+.img-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.retangulo-img {
+  margin-top: 50px; 
+}
+
+.retangulo-img .img-box.ajustada {
+  height: auto;              /* libera altura */
+  max-height: 750px;         /* controla máximo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+}
+
+.retangulo-img .img-box.ajustada img {
+  width: 100%;
+  height: auto;              /* impede cortes */
+  object-fit: contain;       /* garante imagem inteira */
+  border-radius: 14px;       /* borda igual ao card */
+}
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+  <header class="hero" role="banner">
+    <div class="hero-inner">
+      <div class="icon-breath">🫁</div>
+
+      <!-- title row with login link beside the site name -->
+      <div class="title-row" aria-hidden="false">
+        <h1>Respira Vida</h1>
+        <a class="login-link" href="login.php" title="Entrar — Respira Vida">Login</a>
+      </div>
+      <div class="title-row" aria-hidden="false">
+        <a class="login-link" href="sobrenos.html" title="Entrar — Respira Vida">Sobre Nós</a>
+      </div>
+      
+
+      <div class="subtitle">Um futuro sem fumaça</div>
+      <p class="lead">A cada tragada, um futuro se apaga. Informação visual e comparativa sobre os perigos do vape, narguilé e cigarro tradicional.</p>
+      <a class="btn-primary" href="#comparar">Descubra a Verdade</a>
+    </div>
+    <div class="dots" aria-hidden="true">
+      <span></span><span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <main>
+    <section id="comparar" aria-labelledby="title-compare">
+      <h2 id="title-compare" style="text-align:center;color:#fff;margin:30px 0 18px;font-size:28px">A Verdade por Trás da Fumaça</h2>
+
+      <div class="compare" role="list">
+        <article class="card" role="listitem" aria-label="Cigarro tradicional">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="badge c1">🚬</div>
+            <h3>Cigarro Tradicional</h3>
+          </div>
+          <div class="stat">
+            <small>Nicotina por Sessão</small>
+            <strong>1 mg</strong>
+            <small>≈ 1 cigarro</small>
+          </div>
+          <div class="stat">
+            <small>Volume de Fumaça</small>
+            <strong>~500 mL</strong>
+          </div>
+          <div class="stat">
+            <small>Toxinas</small>
+            <strong>+7.000 substâncias tóxicas</strong>
+          </div>
+        </article>
+
+        <article class="card" role="listitem" aria-label="Cigarro eletrônico">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="badge c2">⚡</div>
+            <h3>Cigarro Eletrônico</h3>
+          </div>
+          <div class="stat">
+            <small>Nicotina por Sessão</small>
+            <strong>2–10 mg</strong>
+            <small>≈ 2–10 cigarros</small>
+          </div>
+          <div class="stat">
+            <small>Volume de Fumaça</small>
+            <strong>~1.000 mL</strong>
+          </div>
+          <div class="stat">
+            <small>Toxinas</small>
+            <strong>Metais pesados e nicotina líquida</strong>
+          </div>
+        </article>
+
+        <article class="card" role="listitem" aria-label="Narguilé">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="badge c3">💨</div>
+            <h3>Narguilé</h3>
+          </div>
+          <div class="stat">
+            <small>Nicotina por Sessão</small>
+            <strong>4–10 mg</strong>
+            <small>≈ 20–50 cigarros</small>
+          </div>
+          <div class="stat">
+            <small>Volume de Fumaça</small>
+            <strong>~90.000 mL</strong>
+          </div>
+          <div class="stat">
+            <small>Toxinas</small>
+            <strong>Equivale a 100 cigarros em fumaça</strong>
+          </div>
+        </article>
+      </div>
+
+      <div class="chart" style="margin-top:28px">
+        <h3 style="margin:0 0 12px;color:#0b1f26">Volume de Fumaça Inalado por Sessão</h3>
+        <p style="margin:0 0 18px;color:var(--muted)">Quantidade aproximada de fumaça que entra nos pulmões (mL)</p>
+
+        <div class="bars" role="img" aria-label="Gráfico comparativo de volume de fumaça">
+          <div class="bar cig"><span>500 mL</span></div>
+          <div class="bar vape"><span>1.000 mL</span></div>
+          <div class="bar narg"><span>90.000 mL</span></div>
+        </div>
+
+        <div class="legend" aria-hidden="true">
+          <div style="display:flex;align-items:center;gap:8px"><i style="background:#ff9a3c"></i><small>Cigarro</small></div>
+          <div style="display:flex;align-items:center;gap:8px"><i style="background:#b37aff"></i><small>Vape</small></div>
+          <div style="display:flex;align-items:center;gap:8px"><i style="background:#ff5b5b"></i><small>Narguilé</small></div>
+        </div>
+      </div>
+      
+      <!-- Novos blocos para imagens + texto -->
+<h2 style="text-align:center;color:#fff;margin:50px 0 18px;font-size:26px">Mais Informações</h2>
+
+<div class="compare extra-img-cards" role="list">
+  
+  <!-- CARD 1 -->
+  <article class="card card-img" role="listitem">
+    <div class="img-box">
+      <img src="Imagens\1.webp" alt="Imagem informativa 1"> 
+    </div>
+    <h3 class="img-title">Gerações do vape.</h3>
+  </article>
+
+  <!-- CARD 2 -->
+  <article class="card card-img" role="listitem">
+    <div class="img-box">
+      <img src="Imagens\cigarro2.jpg" alt="Imagem informativa 2">
+    </div>
+    <h3 class="img-title">Habitos para parar de fumar!</h3>
+  </article>
+
+  <!-- CARD 3 -->
+  <article class="card card-img" role="listitem">
+    <div class="img-box">
+      <img src="Imagens\cartaz.jpg" alt="Imagem informativa 3">
+    </div>
+    <h3 class="img-title">Diga não ao tabaco!</h3>
+  </article>
+
+</div>
+<div class="card card-img retangulo-img">
+  <div class="img-box ajustada">
+    <img src="Imagens\Captura de tela 2025-11-25 144445.png" alt="Imagem">
+  </div>
+  <h3 class="img-title">A Realidade dos números.</h3>
+</div>
+
+<div class="card card-img retangulo-img">
+  <div class="img-box ajustada">
+    <img src="Imagens\Captura de tela 2025-11-25 150129.png" alt="Imagem">
+  </div>
+  <h3 class="img-title">Você Consegue!</h3>
+</div>
+<div class="card card-img retangulo-img">
+  <div class="img-box ajustada">
+    <img src="Imagens/Captura de tela 2025-11-25 150749.png" alt="imagem">
+
+  </div>
+  <h3 class="img-title">Impactos na Saúde.</h3>
+</div>
+
+    </section>
+  </main>
+  
+<div class="title-row" aria-hidden="false">
+        <a class="login-link" href="minigame.html" title="Entrar — Respira Vida">Mini Game</a>
+      </div>
+  <footer>
+    <p>&copy; 2025 Respira Vida — Informar, prevenir e apoiar. Se você precisa de ajuda para parar, procure serviços de saúde locais.</p>
+  </footer>
+</body>
+</html>

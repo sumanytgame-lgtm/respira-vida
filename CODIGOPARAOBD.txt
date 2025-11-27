@@ -1,0 +1,16 @@
+CREATE DATABASE pwams;
+
+CREATE TABLE usuarios (
+    cpf CHAR(11) PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    telefone VARCHAR(15),
+    email VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(100) NOT NULL,
+    cep CHAR(8),
+    rua VARCHAR(100),
+    numero VARCHAR(10),
+    complemento VARCHAR(30),
+    bairro VARCHAR(50),
+    cidade VARCHAR(50),
+    estado CHAR(2)
+);
