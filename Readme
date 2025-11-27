@@ -1,0 +1,112 @@
+O Respira Vida é um site desenvolvido com o objetivo de informar e conscientizar jovens e adultos sobre os riscos do cigarro tradicional, do vape e do narguilé. O projeto busca apresentar informações de forma clara, visual e acessível, utilizando gráficos, comparações e conteúdos educativos para estimular escolhas mais saudáveis.
+
+👨‍💻 Equipe de Desenvolvimento
+• Robert Garcia Suman Gonzalez
+
+Responsável pela estrutura, design e toda a parte front-end do site.
+Criou:
+
+Layout completo e responsivo
+
+Organização visual das seções
+
+Cards de comparação
+
+Efeitos, paleta de cores e estilo geral
+
+Página inicial e área “Sobre Nós”
+
+Integração dos gráficos no front
+
+Trabalhou com foco na estética, acessibilidade e clareza das informações, garantindo que o conteúdo fosse atraente e fácil de navegar.
+
+• Lucas Toalhares
+
+Responsável pela parte do banco de dados e das funcionalidades back-end.
+Criou:
+
+Estrutura do banco de dados
+
+Sistema de login integrado
+
+Conexão entre o site e o banco
+
+Regras de acesso e organização das tabelas
+
+Foi essencial para garantir segurança, armazenamento e funcionamento interno do site.
+
+🛠️ Linguagens e Tecnologias Utilizadas
+
+O projeto foi construído utilizando diversas tecnologias modernas, como:
+
+HTML5 — Estrutura das páginas
+
+CSS3 — Estilização, design, responsividade e animações
+
+JavaScript — Interatividade, validações e elementos dinâmicos
+
+Chart.js — Criação dos gráficos informativos
+
+PHP — Sistema de login e comunicação com o banco
+
+MySQL — Armazenamento de usuários e dados internos
+
+Flexbox e Grid Layout — Organização visual responsiva
+
+Responsividade mobile-first — Funcionamento perfeito em celular e computador
+
+Essa combinação permitiu criar um site moderno, responsivo, leve e funcional.
+
+⚙️ Funcionalidades do Site Respira Vida
+
+O site conta com diversos recursos pensados para conscientizar e informar:
+
+📌 Página inicial interativa
+
+Com frases de impacto, ícone temático e resumo do objetivo do projeto.
+
+📊 Gráficos comparativos
+
+Criados com Chart.js, mostram:
+
+riscos
+
+quantidade de toxinas
+
+diferenças entre vape, cigarro e narguilé
+
+Tudo de forma simples e visual.
+
+🖼️ Cards de comparação
+
+Apresentam informações rápidas sobre cada dispositivo, com imagens, textos e dados essenciais.
+
+👤 Sistema de Login
+
+Desenvolvido em PHP + MySQL, permitindo gerenciar usuários e ampliar futuras funcionalidades.
+
+📚 Conteúdos educativos
+
+Explicações sobre:
+
+efeitos do vape
+
+perigos do cigarro tradicional
+
+mitos sobre o narguilé
+
+impactos respiratórios e cardiovasculares
+
+🧭 Navegação responsiva
+
+Site totalmente adaptado para smartphones, tablets e PCs.
+
+🎯 Proposta social
+
+A missão do projeto é:
+
+informar
+
+prevenir
+
+ajudar quem deseja parar de fumar
